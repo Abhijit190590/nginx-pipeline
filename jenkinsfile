@@ -32,12 +32,12 @@ pipeline {
 
                     docker run -d \
                         --name nginx-test \
-                        -p 8081:80 \
+                        -p 12345:80 \
                         $IMAGE_NAME:$IMAGE_TAG
 
                     sleep 5
 
-                    curl -f http://localhost:8081/
+                    curl -f http://localhost:12345/
                 '''
             }
 
@@ -91,7 +91,7 @@ pipeline {
 
                     docker run -d \
                         --name $CONTAINER_NAME \
-                        -p 80:80 \
+                        -p 12345:80 \
                         --restart unless-stopped \
                         $IMAGE_NAME:$IMAGE_TAG
 
@@ -99,7 +99,7 @@ pipeline {
 
                     docker ps
 
-                    curl -f http://localhost/
+                    curl -f http://localhost:12345
                 '''
             }
         }
